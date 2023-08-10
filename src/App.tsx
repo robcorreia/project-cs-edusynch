@@ -3,8 +3,9 @@ import theme from './theme/index';
 import { Home } from './pages/Home';
 import { Header } from './components/Header';
 import GlobalStyle from './theme/globalStyles';
-import { BrowserRouter, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { AppRoutes } from './routes';
 
 function App() {
   return (
@@ -13,8 +14,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <AuthProvider>
           <Header />
-          <Home />
-          <Routes />
+          <AppRoutes />
           <GlobalStyle />
         </AuthProvider>
       </ThemeProvider>

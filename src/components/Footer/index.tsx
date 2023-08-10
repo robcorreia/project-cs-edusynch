@@ -2,14 +2,14 @@ import { Section } from "../Section"
 import { Container } from "./styles"
 
 export function Footer() {
-
+  const userAuth = true;
   return (
-    <Container>
+    <Container userLogged={userAuth}>
       <Section>
         <p>Copyright © 2022 -  All rights reserved</p>
-        <a href="#">
+        {!userAuth && <a href="/">
           <img src="images/brand-footer.svg" alt="Coin Sync Brand" />
-        </a>
+        </a>}
       </Section>
     </Container>
   )
