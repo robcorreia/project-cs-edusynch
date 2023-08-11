@@ -1,3 +1,4 @@
+import { Footer } from "../../components/Footer";
 import { DashboardHeader } from "../../components/HeaderDashboard";
 import { Section } from "../../components/Section";
 import { SideMenu } from "../../components/SideMenu";

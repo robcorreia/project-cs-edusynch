@@ -20,11 +20,11 @@ export function DashboardHeader() {
     <div className="card daily-variation">
       <div className="content-left">
         <p>Daily Variation</p>
-        <div>icon + ETH</div>
+        <div className="coin">icon + <p>ETH</p></div>
         <span>+5,65%</span>
       </div>
       <div className="content-right">
-        <img src="images/graphic-vatiation.svg" alt="" />
+        <img src="images/graphic-variation.svg" alt="" />
       </div>
     </div>
 

@@ -6,6 +6,7 @@ import GlobalStyle from './theme/globalStyles';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { AppRoutes } from './routes';
+import { Footer } from './components/Footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <AuthProvider>
           <Header />
           <AppRoutes />
+          <Footer />
           <GlobalStyle />
         </AuthProvider>
       </ThemeProvider>

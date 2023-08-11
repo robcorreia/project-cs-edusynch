@@ -6,7 +6,6 @@ import { Tag } from "../../components/Tag";
 import { AboutUs, BackgroundSeparator, Contact, ContactForm, Container, Hero, TopCryptos, TagBox } from "./styles";
 import { Card } from "../../components/Card";
 import { Table } from "../../components/Table";
-import { Footer } from "../../components/Footer";
 import { SignUpModal } from "../../components/SignUpModal";
 import * as Dialog from '@radix-ui/react-dialog'
 
@@ -172,7 +171,6 @@ export function Home() {
           </Section>
         </div>
       </Contact>
-      <Footer />
     </Container>
   )
 }
