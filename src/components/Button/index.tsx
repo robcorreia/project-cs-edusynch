@@ -11,7 +11,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   textSize?: number;
 }
 
-export function Button({ size, height, color, textSize = 16, transparent, children, ...rest }: ButtonProps) {
+export function Button({ size, height, color, textSize = 16, transparent = false, children, ...rest }: ButtonProps) {
 
   return (
     <Container size={size} color={color} height={height} textSize={textSize} transparent={transparent} {...rest}>

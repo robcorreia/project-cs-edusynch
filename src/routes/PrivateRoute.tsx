@@ -1,16 +1,17 @@
-import React, { ReactNode } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { Navigate, useLocation, Outlet } from "react-router-dom";
-
+import { Navigate, useLocation } from "react-router-dom";
 interface PrivateRouteProps {
-  children: ReactNode
+  children: JSX.Element
 }
 
-export function PrivateRoute({ children }: PrivateRouteProps) {
-  const auth = useAuth();
+const PrivateRoute = ({ children }: PrivateRouteProps) => {
+  const location = useLocation();
 
-  return (
-    !auth.user ? <Navigate to='/' /> : <Outlet />
-  )
+  const logged = localStorage.getItem("user");
+
+  if (!logged) {
+    return <Navigate to="/" state={{ path: location.pathname }} />;
+  }
+  return children;
 };
 
+export default PrivateRoute;

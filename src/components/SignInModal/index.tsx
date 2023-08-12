@@ -7,6 +7,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup"
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { SignUpModal } from '../SignUpModal';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface IForm {
   email: string;
@@ -24,6 +26,7 @@ const schema = yup
 export function SignInModal() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate()
+  const { login } = useAuth();
 
   const {
     register,
@@ -35,7 +38,9 @@ export function SignInModal() {
   })
   const onSubmit = (data: IForm) => {
     console.log(data)
-    navigate('/dashboard')
+
+    login(data)
+
     document.dispatchEvent(
       new KeyboardEvent("keydown", {
         altKey: false,
@@ -52,6 +57,7 @@ export function SignInModal() {
         keyCode: 27,
       })
     );
+    navigate('/dashboard')
     reset()
   }
 
@@ -82,7 +88,12 @@ export function SignInModal() {
           <p className='error-message'>{errors.password?.message}</p>
           <a className='password-forgot ' href="/">Forgot password?</a>
           <Button color='#ffffff' type="submit" size={384} textSize={16} height={48}>Sign in</Button>
-          <a className='sign-up-button' href='/'>Don't have an account? <strong>Sign up to <span className='brand-text-coin'>Coin</span><span className='brand-text-synch'>Synch</span></strong></a>
+          <Dialog.Root>
+            <Dialog.Trigger asChild>
+              <a className='sign-up-button' href='/'>Don't have an account? <strong>Sign up to <span className='brand-text-coin'>Coin</span><span className='brand-text-synch'>Synch</span></strong></a>
+            </Dialog.Trigger>
+            <SignUpModal />
+          </Dialog.Root>
 
         </form>
 

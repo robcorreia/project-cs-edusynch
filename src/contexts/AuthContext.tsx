@@ -1,58 +1,72 @@
-import { useState, createContext, useContext, ReactNode, Dispatch, SetStateAction } from "react";
 
 
+import { useState, createContext, useContext, ReactNode, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
-interface User {
-  name?: string;
+interface IUser {
   email: string;
   password: string;
-  confirmPassword?: string;
 }
 
-interface AuthContextInterface {
-  user: User;
-  login: (user: User) => void
-
+interface IAuthContext {
+  user: IUser;
+  login: (user: IUser) => void
+  logout: () => void;
+  logged: boolean;
 }
 
 const defaultState = {
   user: {
-    name: '',
     email: '',
     password: '',
   },
-  login: (user: User) => { },
-} as AuthContextInterface
+  login: (user: IUser) => { },
+  logout: (user: IUser) => { },
+} as IAuthContext
 
-const AuthContext = createContext(defaultState);
+export const AuthContext = createContext(defaultState);
 
+interface AuthProviderProps {
+  children: ReactNode
+}
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User>({
-    name: '',
+  const [user, setUser] = useState<IUser>({
     email: '',
     password: ''
   });
+  const [logged, setLogged] = useState(false)
+  const navigate = useNavigate()
 
 
-  const login = (user: User) => {
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+      setLogged(true)
+    }
+  }, []);
+
+  const login = (user: IUser) => {
     setUser(user);
+    localStorage.setItem('user', JSON.stringify(user))
+    setLogged(true)
   };
 
   const logout = () => {
     setUser({
-      name: '',
       email: '',
       password: ''
     });
+    localStorage.clear();
+    setLogged(false)
+    navigate('/')
   };
 
+
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, logout, logged }}>
       {children}
     </AuthContext.Provider>
   );
