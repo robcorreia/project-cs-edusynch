@@ -1,6 +1,5 @@
 import { ArrowRight, CurrencyBtc, Plus } from "@phosphor-icons/react";
 import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
 import { Section } from "../../components/Section";
 import { Tag } from "../../components/Tag";
 import { AboutUs, BackgroundSeparator, Contact, ContactForm, Container, Hero, TopCryptos, TagBox } from "./styles";
@@ -163,7 +162,8 @@ export function Home() {
               </div>
               <div>
                 <ContactForm>
-                  <Input label="Email" placeholder="Email" />
+                  <label>Email</label>
+                  <input type="email" placeholder="Email" />
                   <Button size={384} height={48} color="#ffffff">Subscribe</Button>
                 </ContactForm>
               </div>

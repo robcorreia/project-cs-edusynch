@@ -19,6 +19,12 @@ const GlobalStyle = createGlobalStyle`
 .brand-text-synch {
   color: ${({ theme }) => theme.COLORS.SECONDARY_500};
 }
+
+.error-message {
+  color: #EC3237;
+  margin: 4px;
+  font-size: 12px;
+}
 `;
 
 export default GlobalStyle;

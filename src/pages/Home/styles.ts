@@ -170,6 +170,34 @@ export const ContactForm = styled.form`
   width: 100%;
   max-width: 384px;
 
+  label {
+    display: block;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
+    margin-bottom: 8px;
+  }
+
+  input {
+    width: 100%;
+    height: 48px;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.1);
+    border: none;
+    display: block;
+    font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+    color: ${({ theme }) => theme.COLORS.TEXT};
+    font-family: "Roboto", monospace;
+    outline: none;
+
+    &::placeholder {
+      color: ${({ theme }) => theme.COLORS.SECONDARY_400};
+      font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+    }
+  }
+
   button {
     margin-top: 21px;
     box-shadow: 0px 13px 23px 0px rgba(0, 0, 0, 0.04);

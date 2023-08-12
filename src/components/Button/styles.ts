@@ -28,4 +28,9 @@ export const Container = styled.button<ButtonProps>`
   svg {
     margin-left: 10px;
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;

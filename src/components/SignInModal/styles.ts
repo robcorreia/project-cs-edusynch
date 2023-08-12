@@ -20,6 +20,39 @@ export const Content = styled(Dialog.Content)`
   left: 50%;
   transform: translate(-50%, -50%);
 
+  .form-content {
+    border: 1px solid #e0deea;
+    background-color: ${({ theme }) => theme.COLORS.WHITE};
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 24px;
+
+    svg {
+      color: ${({ theme }) => theme.COLORS.SECONDARY_300};
+    }
+
+    input {
+      width: 100%;
+      display: block;
+      border: none;
+      background-color: transparent;
+      font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+      color: ${({ theme }) => theme.COLORS.TEXT};
+      font-family: "Roboto", monospace;
+      outline: none;
+
+      &::placeholder {
+        color: ${({ theme }) => theme.COLORS.SECONDARY_400};
+        font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+      }
+    }
+  }
+
   .password-forgot {
     text-decoration: none;
     color: ${({ theme }) => theme.COLORS.SECONDARY_500};
@@ -66,4 +99,22 @@ export const Title = styled(Dialog.Title)`
   text-align: center;
   font-size: ${({ theme }) => theme.FONT_SIZE.XL}px;
   font-weight: ${({ theme }) => theme.FONT_WEIGHT.BOLD};
+`;
+
+interface ShowPasswordButtonProps {
+  clicked: boolean;
+}
+
+export const ShowPasswordButton = styled.button<ShowPasswordButtonProps>`
+  padding: 0;
+  margin: 0 !important;
+  border: none;
+  background: transparent;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+
+  svg {
+    fill: ${(props) => props.clicked && "#FBAB34"};
+  }
 `;

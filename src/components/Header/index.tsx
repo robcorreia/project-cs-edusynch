@@ -9,7 +9,7 @@ import { DropdownMenu } from "../DropdownMenu";
 
 
 export function Header() {
-  const userAuth = true;
+  const userAuth = false;
 
   return (
     <Container userLogged={userAuth}>
@@ -40,10 +40,11 @@ export function Header() {
 
           </UserNav>}
 
-        <MenuProfile>
-          <Avatar userImage="images/avatar.png" />
-          <DropdownMenu />
-        </MenuProfile>
+        {userAuth &&
+          <MenuProfile>
+            <Avatar userImage="images/avatar.png" />
+            <DropdownMenu />
+          </MenuProfile>}
 
       </Section>
     </Container>

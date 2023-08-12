@@ -11,7 +11,7 @@ export const Overlay = styled(Dialog.Overlay)`
 
 export const Content = styled(Dialog.Content)`
   max-width: 448px;
-  min-height: 320px;
+  min-height: 375px;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
   border-radius: 8px;
   padding: 32px;
@@ -19,6 +19,39 @@ export const Content = styled(Dialog.Content)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  .form-content {
+    border: 1px solid #e0deea;
+    background-color: ${({ theme }) => theme.COLORS.WHITE};
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 24px;
+
+    svg {
+      color: ${({ theme }) => theme.COLORS.SECONDARY_300};
+    }
+
+    input {
+      width: 100%;
+      display: block;
+      border: none;
+      background-color: transparent;
+      font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+      color: ${({ theme }) => theme.COLORS.TEXT};
+      font-family: "Roboto", monospace;
+      outline: none;
+
+      &::placeholder {
+        color: ${({ theme }) => theme.COLORS.SECONDARY_400};
+        font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+      }
+    }
+  }
 
   button {
     margin: 24px auto;
