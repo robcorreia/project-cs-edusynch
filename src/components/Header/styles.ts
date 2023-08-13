@@ -10,11 +10,28 @@ export const Container = styled.header<HeaderProps>`
   height: 64px;
   align-items: center;
 
+  .links {
+    display: flex;
+    gap: 40px;
+  }
+
+  .coins {
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+
+      li {
+        font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
+      }
+    }
+  }
+
   section {
     display: flex;
     align-items: center;
     justify-content: ${(props) =>
-      props.userLogged ? "space-between" : "space-around"};
+      props.userLogged ? "space-between" : "space-between"};
   }
 
   box-shadow: ${(props) =>

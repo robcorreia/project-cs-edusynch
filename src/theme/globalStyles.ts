@@ -25,6 +25,15 @@ const GlobalStyle = createGlobalStyle`
   margin: 4px;
   font-size: 12px;
 }
+
+.up {
+  color: #149E55;
+}
+
+.down {
+  color: #A12226;
+}
+
 `;
 
 export default GlobalStyle;

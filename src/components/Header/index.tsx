@@ -18,13 +18,23 @@ export function Header() {
   return (
     <Container userLogged={userAuth}>
       <Section>
-        <Brand><img src="images/brand-header.svg" alt="CoinSynch" /></Brand>
+        <div className="links">
+          <Brand><img src="images/brand-header.svg" alt="CoinSynch" /></Brand>
 
 
-        {!userAuth && <Nav>
-          <li><a href="/">About us</a></li>
-          <li><a href="/">Top Coins</a></li>
-        </Nav>}
+          {!userAuth && <Nav>
+            <li><a href="/">About us</a></li>
+            <li><a href="/">Top Coins</a></li>
+          </Nav>}
+        </div>
+        {!userAuth &&
+          <div className="coins">
+            <ul>
+              <li>BIT R$ 23,62 <span className="up">+7,082</span></li>
+              <li>DOG R$ 23,62 <span className="down">-5,230</span></li>
+            </ul>
+          </div>
+        }
 
         {!userAuth &&
           <UserNav>
@@ -48,7 +58,7 @@ export function Header() {
           <MenuProfile>
             <Avatar userImage="images/avatar.png" />
             <DropdownMenuRadix.Root>
-              <DropdownMenuOpen>UserName <CaretDown size={12} weight="bold" /></DropdownMenuOpen>
+              <DropdownMenuOpen>{user.email} <CaretDown size={12} weight="bold" /></DropdownMenuOpen>
 
               <DropdownMenuRadix.Portal>
                 <DropdownMenuContent>

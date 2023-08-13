@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.table`
   width: 100%;
+  border-spacing: 0;
 
   thead {
     text-align: left;
@@ -12,6 +13,12 @@ export const Container = styled.table`
       color: ${({ theme }) => theme.COLORS.SECONDARY_500};
       line-height: 16px;
       padding-left: 24px;
+
+      &:last-child {
+        text-align: right;
+        padding-right: 24px;
+        padding-left: 0;
+      }
     }
   }
 
@@ -65,5 +72,23 @@ export const Container = styled.table`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  td.trade {
+    float: right;
+  }
+
+  .transfer-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+      display: block;
+    }
   }
 `;

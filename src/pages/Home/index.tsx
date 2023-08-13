@@ -1,4 +1,4 @@
-import { ArrowRight, CurrencyBtc, Plus } from "@phosphor-icons/react";
+import { ArrowRight, Plus } from "@phosphor-icons/react";
 import { Button } from "../../components/Button";
 import { Section } from "../../components/Section";
 import { Tag } from "../../components/Tag";
@@ -7,9 +7,40 @@ import { Card } from "../../components/Card";
 import { Table } from "../../components/Table";
 import { SignUpModal } from "../../components/SignUpModal";
 import * as Dialog from '@radix-ui/react-dialog'
+import { Carousel } from "../../components/Carousel";
+import { useEffect, useState } from "react";
+import { api } from "../../service";
+
+interface IData {
+  asset_id: string;
+  name: string;
+  price_usd: number;
+}
 
 
 export function Home() {
+  const [data, setData] = useState<IData[]>()
+  const [viewMoreDisabled, setViewMoreDisabled] = useState(false)
+  const [apiError, setApiError] = useState('')
+
+  const getData = async (limit: number) => {
+    try {
+      const response = await api.get('v1/assets/');
+      const data = response.data.slice(1, limit)
+      setData(data)
+      setApiError('')
+    } catch (e: any) {
+      setApiError(e.message)
+    } finally {
+      return setApiError('')
+
+    }
+  }
+
+  useEffect(() => {
+    getData(4)
+  }, [])
+
   return (
     <Container>
 
@@ -35,8 +66,8 @@ export function Home() {
             </TagBox>
 
           </div>
-          <div>
-            Slider
+          <div className="carousel">
+            <Carousel />
           </div>
         </Hero>
 
@@ -111,38 +142,21 @@ export function Home() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="position">01</td>
-                <td className="coin"><CurrencyBtc size={32} weight="fill" />Bitcoin <span className="initials">BTC</span></td>
-                <td className="price">US$ 25.499,52</td>
-                <td className="change">+5,65%</td>
-                <td className="trade"><a className="buy-button" href="/">Buy</a></td>
-              </tr>
-              <tr>
-                <td className="position">01</td>
-                <td className="coin">Bitcoin <span className="initials">BTC</span></td>
-                <td className="price">US$ 25.499,52</td>
-                <td className="change">+5,65%</td>
-                <td className="trade"><a className="buy-button" href="/">Buy</a></td>
-              </tr>
-              <tr>
-                <td className="position">01</td>
-                <td className="coin">Bitcoin <span className="initials">BTC</span></td>
-                <td className="price">US$ 25.499,52</td>
-                <td className="change">+5,65%</td>
-                <td className="trade"><a className="buy-button" href="/">Buy</a></td>
-              </tr>
-              <tr>
-                <td className="position">01</td>
-                <td className="coin">Bitcoin <span className="initials">BTC</span></td>
-                <td className="price">US$ 25.499,52</td>
-                <td className="change">+5,65%</td>
-                <td className="trade"><a className="buy-button" href="/">Buy</a></td>
-              </tr>
+              {data && data.map((item, index) => (
+                <tr key={item.asset_id}>
+                  <td className="position">{index !== 10 ? `0${index + 1}` : ''}</td>
+                  <td className="coin">{item.name} <span className="initials">{item.asset_id}</span></td>
+                  <td className="price">{'US' + (new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.price_usd))}</td>
+                  <td className="change"><span className="up">+5,65%</span></td>
+                  <td className="trade"><a className="buy-button" href="/">Buy</a></td>
+                </tr>
+              ))}
+              {apiError.length > 1 && <p className="error-message">{apiError}</p>}
+
             </tbody>
           </Table>
 
-          <button className="view-more">View More <Plus size={12} weight="bold" /></button>
+          <button disabled={viewMoreDisabled} className="view-more" onClick={() => { getData(9); setViewMoreDisabled(true) }}>View More <Plus size={12} weight="bold" /></button>
 
         </Section>
 

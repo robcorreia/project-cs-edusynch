@@ -3,6 +3,12 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.WHITE};
   padding-top: 100px;
+
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Hero = styled.section`
@@ -15,6 +21,7 @@ export const Hero = styled.section`
     font-weight: ${({ theme }) => theme.FONT_WEIGHT.BOLD};
     line-height: 56px;
     margin-bottom: 24px;
+    margin-top: 60px;
   }
 
   p {
@@ -118,6 +125,11 @@ export const TopCryptos = styled.section`
     cursor: pointer;
     margin-top: 32px;
     text-align: center;
+
+    &:disabled {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 `;
 

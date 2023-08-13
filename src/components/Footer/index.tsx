@@ -1,10 +1,12 @@
+import { useAuth } from "../../contexts/AuthContext";
 import { Section } from "../Section"
 import { Container } from "./styles"
 
 export function Footer() {
-  const userAuth = true;
+  const { user } = useAuth();
+  const userAuth = user.email.length > 0;
   return (
-    <Container userLogged={userAuth}>
+    <Container userlogged={userAuth}>
       <Section>
         <p>Copyright © 2022 -  All rights reserved</p>
         {!userAuth && <a href="/">

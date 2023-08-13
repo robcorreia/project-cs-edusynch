@@ -18,7 +18,7 @@ const schema = yup
   })
   .required()
 
-export function AddCryptoModal() {
+export function TransferCrypto() {
 
   const {
     register,
@@ -54,19 +54,22 @@ export function AddCryptoModal() {
       <Overlay />
       <Content>
         <ButtonClose><X size={20} weight="bold" /></ButtonClose>
-        <Title>Add Crypto</Title>
+        <Title>Transfer Crypto</Title>
 
         <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="crypto">Transfer</label>
           <div className='form-content'>
-            <input id='crypto' type='text' placeholder='Choose Crypto' {...register("crypto")} />
+            <input id='crypto' type='text' placeholder='Select transfer' {...register("crypto")} />
           </div>
           <p className='error-message'>{errors.crypto?.message}</p>
 
+          <label htmlFor="quantity">Quantity</label>
+
           <div className='form-content'>
-            <input id='password' type="number" placeholder='0,00' {...register("quantity")} />
+            <input id='quantity' type="number" placeholder='0,00' {...register("quantity")} />
           </div>
           <p className='error-message'>{errors.quantity?.message}</p>
-          <Button color='#ffffff' type="submit" size={384} textSize={16} height={48}>Add Cyrpto</Button>
+          <Button color='#ffffff' type="submit" size={370} textSize={16} height={48}>Transfer Cyrpto</Button>
 
         </form>
 

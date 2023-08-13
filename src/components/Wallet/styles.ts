@@ -17,6 +17,7 @@ export const Container = styled.section`
     align-items: center;
     padding: 24px;
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.SECONDARY_200};
+    margin-bottom: 24px;
 
     .title {
       display: flex;
