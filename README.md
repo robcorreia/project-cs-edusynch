@@ -1,8 +1,10 @@
-# Getting Started with Create React App
+# Projeto
 
 Projeto criado via [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Scripts
+
+Primeiro faça o download/clone do projeto, feito isso...
 
 No diretório raiz do projeto você deverá rodar os comandos:
 
